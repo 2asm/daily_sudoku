@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Daily sudoku</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="wasm_exec.js"></script>
+    <link rel="stylesheet" href="style.css" loading="lazy">
+</head>
+
+<body>
+    <a id="source_code" style="float:right;margin-right:10px;" href="https://github.com/2asm/daily_sudoku"
+        tabindex="-1">source code</a>
+    <br />
+    <div id="body2">
+        <h2>Daily sudoku</h2>
+        <table>
+            <tbody>
+                <tr class="row1">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row2">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row3">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row4">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row5">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row6">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row7">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row8">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="row9">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <button id="check" tabindex="-1">CHECK</button>
+        <br />
+        <h4 id="result"></h4>
+    </div>
+    <script>
+        let i = 0, j = 0;
+        document.querySelectorAll("td").forEach((e) => {
+            if (j >= 9) {
+                i += 1;
+                j = 0;
+            }
+            id = "i" + i + "" + j;
+            e.className = "c" + i + "" + j;
+            e.innerHTML = "<button id=" + id + " class='cell' value='0'></button>"
+            j += 1;
+        })
+        document.onkeypress = (e) => {
+            let active_element = document.activeElement
+            if (e.key >= 1 && e.key <= 9 && active_element.className == "cell") {
+                active_element.innerText = e.key;
+                active_element.value = e.key;
+                active_element.style.color = "green";
+            }
+        }
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("daily.wasm"), go.importObject).then((result) => {go.run(result.instance);});
+    </script>
+</body>
+
+</html>

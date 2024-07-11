@@ -1,0 +1,74 @@
+#body2 {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 650px;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+    padding: 0 10px;
+    float: center;
+}
+
+table {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    border-collapse: collapse;
+    display: inline-block;
+    grid-column-gap: none;
+}
+
+
+
+td{
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid lightgrey;
+}
+
+
+.c00, .c10, .c20, .c30, .c40, .c50, .c60, .c70, .c80 {
+    border-left: 2px solid black;
+}
+
+.c08, .c18, .c28, .c38, .c48, .c58, .c68, .c78, .c88 {
+    border-right: 2px solid black;
+}
+
+.c02, .c12, .c22, .c32, .c42, .c52, .c62, .c72, .c82 {
+    border-right: 2px solid black;
+}
+
+.c05, .c15, .c25, .c35, .c45, .c55, .c65, .c75, .c85 {
+    border-right: 2px solid black;
+}
+
+.c20, .c21, .c22, .c23, .c24, .c25, .c26, .c27, .c28 {
+    border-bottom: 2px solid black;
+}
+
+.c50, .c51, .c52, .c53, .c54, .c55, .c56, .c57, .c58 {
+    border-bottom: 2px solid black;
+}
+
+.c00, .c01, .c02, .c03, .c04, .c05, .c06, .c07, .c08 {
+    border-top: 2px solid black;
+}
+
+.c80, .c81, .c82, .c83, .c84, .c85, .c86, .c87, .c88 {
+    border-bottom: 2px solid black;
+}
+
+.cell {
+    height: 40px;
+    width: 40px;
+    padding: 0px;
+    margin: 0xp;
+    font-size: 30px;
+    border: none;
+}
+
+.cell:focus {
+    background-color: lightgreen;
+    border: none;
+}
