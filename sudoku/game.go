@@ -123,15 +123,16 @@ func (g *game) Start() {
 			if g.cell[i][j] != 0 {
 				grid[i][j].Set("innerText", g.cell[i][j])
 				grid[i][j].Set("disabled", true)
+                grid[i][j].Call("setAttribute", "style", "color:grey;")
 			} else {
 				if out != nil {
 					grid[i][j].Set("innerText", out[i][j])
 					grid[i][j].Set("value", out[i][j])
-					grid[i][j].Call("setAttribute", "style", "color:green;")
+					grid[i][j].Call("setAttribute", "style", "color:grey;")
 					g.updateResult(true)
 				} else {
 					grid[i][j].Set("innerText", "0")
-					grid[i][j].Call("setAttribute", "style", "color:transparent;")
+                    grid[i][j].Call("setAttribute", "style", "color:transparent;background:#eee;")
 				}
 			}
 		}
@@ -142,8 +143,10 @@ func (g *game) Start() {
 func (g *game) updateResult(ok bool) {
 	if ok {
 		result.Set("innerText", "Congratulations, you solved today's sudoku")
+		result.Set("style", "color:green;")
 	} else {
 		result.Set("innerText", "Wrong")
+		result.Set("style", "color:orange;")
 		go func() {
 			time.Sleep(time.Second * 3)
 			result.Set("innerText", "")

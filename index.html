@@ -14,7 +14,7 @@
         tabindex="-1">source code</a>
     <br />
     <div id="body2">
-        <h2>Daily sudoku</h2>
+        <h2>Today's sudoku</h2>
         <table>
             <tbody>
                 <tr class="row1">
@@ -123,6 +123,7 @@
         <button id="check" tabindex="-1">CHECK</button>
         <br />
         <h4 id="result"></h4>
+        <input id="keybot" tabindex="-1" hidden></button>
     </div>
     <script>
         let i = 0, j = 0;
@@ -133,17 +134,22 @@
             }
             id = "i" + i + "" + j;
             e.className = "c" + i + "" + j;
-            e.innerHTML = "<button id=" + id + " class='cell' value='0'></button>"
+            e.innerHTML = "<input id=" + id + " class='cell' value='0' style='caret-color: transparent'></input>"
             j += 1;
         })
-        document.onkeypress = (e) => {
+        document.querySelectorAll("input").forEach((ee) => ee.oninput = (e) => {
             let active_element = document.activeElement
-            if (e.key >= 1 && e.key <= 9 && active_element.className == "cell") {
-                active_element.innerText = e.key;
-                active_element.value = e.key;
-                active_element.style.color = "green";
+            if (e.data >= 1 && e.data <= 9 && active_element.className == "cell") {
+                active_element.innerText = e.data;
+                active_element.value = e.data;
+                active_element.style.color = "grey";
+            } else {
+                active_element.style.color = "transparent";
+                active_element.innerText = "0";
+                active_element.value = "0";
             }
         }
+        )
         const go = new Go();
         WebAssembly.instantiateStreaming(fetch("daily.wasm"), go.importObject).then((result) => {go.run(result.instance);});
     </script>

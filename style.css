@@ -1,11 +1,11 @@
 #body2 {
     text-align: center;
-    margin: 20px auto;
+    margin: 5px auto;
     max-width: 650px;
     line-height: 1.6;
     font-size: 18px;
     color: #444;
-    padding: 0 10px;
+    padding: 0 5x;
     float: center;
 }
 
@@ -66,9 +66,14 @@ td{
     margin: 0xp;
     font-size: 30px;
     border: none;
+    user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    text-align: center;
+    color: transparent;
 }
 
-.cell:focus {
-    background-color: lightgreen;
+.cell:focus, .cell:active {
+    background-color: lightblue;
     border: none;
 }
