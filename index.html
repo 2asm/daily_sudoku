@@ -138,18 +138,20 @@
             j += 1;
         })
         document.querySelectorAll("input").forEach((ee) => ee.oninput = (e) => {
+            // e.preventDefault();
             let active_element = document.activeElement
             if (e.data >= 1 && e.data <= 9 && active_element.className == "cell") {
                 active_element.innerText = e.data;
                 active_element.value = e.data;
                 active_element.style.color = "grey";
             } else {
-                active_element.style.color = "transparent";
-                active_element.innerText = "0";
-                active_element.value = "0";
+                let val = active_element.value[0] || "0";
+                active_element.innerText = val;
+                active_element.value = val;
+                if (val == "0")
+                    active_element.style.color = "transparent";
             }
-        }
-        )
+        })
         const go = new Go();
         WebAssembly.instantiateStreaming(fetch("daily.wasm"), go.importObject).then((result) => {go.run(result.instance);});
     </script>

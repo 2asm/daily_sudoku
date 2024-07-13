@@ -123,19 +123,21 @@ func (g *game) Start() {
 			if g.cell[i][j] != 0 {
 				grid[i][j].Set("innerText", g.cell[i][j])
 				grid[i][j].Set("disabled", true)
-                grid[i][j].Call("setAttribute", "style", "color:grey;")
+				grid[i][j].Call("setAttribute", "style", "color:grey;")
 			} else {
 				if out != nil {
 					grid[i][j].Set("innerText", out[i][j])
 					grid[i][j].Set("value", out[i][j])
-					grid[i][j].Call("setAttribute", "style", "color:grey;")
-					g.updateResult(true)
+                    grid[i][j].Call("setAttribute", "style", "color:grey;background:#eee;")
 				} else {
 					grid[i][j].Set("innerText", "0")
                     grid[i][j].Call("setAttribute", "style", "color:transparent;background:#eee;")
 				}
 			}
 		}
+	}
+	if out != nil {
+		g.updateResult(true)
 	}
 	select {}
 }
